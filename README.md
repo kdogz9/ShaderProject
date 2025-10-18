@@ -39,4 +39,39 @@ When the directional light is adjusted using the time of day cycle I have made i
 
 ![alt text](image-6.png)
 
+### 2. Material Parameter Collection (MPC) System  
+**Technical Requirements:**  
+- Create an MPC with at least **4 parameters** that control a global scene effect
+- Implement the MPC in **at least 2 different materials**
+- Create a Blueprint that modifies MPC values at runtime
+- Demonstrate a cohesive environmental effect (e.g., time of day, weather system, global color grading)
+
+I implemented a Material Parameter Collection to dynamically control environmental changes based on the time of day. The collection includes parameters for time of day, lamp tint, sunlight tint, and rain intensity, allowing multiple materials to react in sync. The time of day parameter ranges from 0 to 1, smoothly transitioning the scene from day to night while influencing the other parameters. As night falls, the lamps shift from a soft pink hue to a glowing blue, increasing their emissive intensity to simulate artificial lighting in the dark. Meanwhile, the sky transitions from a warm pink to a deep purple, creating a natural dusk effect. Additionally, the rock materials gain a subtle shine at night, using increased roughness and reflection to mimic dew forming on their surfaces. This setup creates a cohesive and immersive atmosphere that visually communicates the passage of time and changing environmental conditions.
+
+**Guiding Questions:**
+- Why use MPC instead of individual material parameters?
+
+Using a Material Parameter Collection (MPC) instead of individual material parameters allowed me to efficiently synchronize visual changes across multiple materials and lighting elements in my scene.If I had relied on individual material parameters, I would have had to manually update each material or use multiple blueprints to coordinate these effects, making the process more complex and less consistent. The MPC made it possible to achieve smooth, cohesive transitions across the environment with one central controller, improving both performance and workflow efficiency.
+
+- How does your system maintain visual consistency across materials?
+
+My system maintains visual consistency across materials by using a Material Parameter Collection (MPC) to drive all environmental changes from a single, unified set of parameters.Since they all use the same set of parameters, the lighting, color palette, and material reactions remain perfectly synchronized. This centralized control ensures that the environment changes feel cohesive and natural, maintaining a consistent visual tone throughout the scene.
+
+### 3. Dynamic Material Instance with Runtime Control  
+**Technical Requirements:**  
+- Create a material with **at least 3 exposed parameters** (scalar and/or vector)
+- Implement a **Dynamic Material Instance (DMI)** in Blueprint
+- Create interactive controls to modify parameters during gameplay
+- Demonstrate a practical use case (e.g., damage effect, dissolve, customization, hit feedback)
+
+I implemented a Dynamic Material Instance (DMI) to allow real-time adjustments to various material properties through user input. The DMI controls three key parameters: Water Tint, Opacity Level, and Glow Intensity. I set up input bindings so that pressing the 1 key changes the water’s tint to pink using a Vector Parameter, while pressing 2 modifies the Scalar Parameter controlling a ball’s opacity, making it visible in the scene. Pressing 3 adjusts another Scalar Parameter to increase the ball’s glow intensity, giving it an emissive effect. The DMI is linked directly to the corresponding materials in the level, enabling each parameter change to update instantly during gameplay. This setup demonstrates how DMIs can provide flexible, interactive control over material behaviors without the need to recompile shaders or duplicate materials, streamlining both testing and visual experimentation.
+
+**Guiding Questions:**
+- When should you use DMI versus Material Instance Constant?
+
+In my project, I used a Dynamic Material Instance (DMI) because I needed materials that could change in real time based on player input. These interactions required the material properties to update instantly during gameplay, which is exactly what DMIs are designed for. In contrast, a Material Instance Constant (MIC) is better suited for static or pre-defined variations—values that are set in the editor and remain fixed during runtime. If I had used MICs, I would have had to create separate instances for each visual variation and could not modify them interactively without rebuilding. By using DMIs, I was able to achieve smooth, real-time visual feedback while maintaining a single, flexible material setup, making them ideal for any system that needs dynamic responsiveness.
+
+- How do you optimize DMI creation and updates?
+
+I optimized Dynamic Material Instance (DMI) creation and updates by carefully managing when and how they were generated and modified during gameplay. Rather than creating new DMIs every time a key was pressed, I created them once at the start of the level and stored references to reuse throughout runtime. This allowed me to efficiently update parameters—like the water tint, ball opacity, and glow intensity—without the overhead of repeatedly instantiating materials. For example, when the player pressed keys 1, 2, or 3, I simply updated the existing DMI’s vector or scalar parameters to change the tint, opacity, or emissive glow instantly. Keeping the DMI linked directly to the materials in the scene also ensured minimal performance cost while maintaining responsiveness. This approach reduces unnecessary memory usage and improves frame stability, making it a best practice for optimizing DMI performance in real-time environments. 
 
