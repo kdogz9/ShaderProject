@@ -8,7 +8,7 @@
 - Add visual elements: foam, depth fade, refraction, or transparency
 - Demonstrate vertex animation without skeletal meshes
 
-For this material, I started with creating the parameters for the water colour and the depth. This was so I could make the water a realistic colour and adjust the parameters of the colour being darker as depth was added to the material using a scattering depth parameter. 
+For this material, I started with creating the parameters for the water colour and the depth. This was so I could make the water a realistic colour and adjust the parameters of the colour being darker as depth was added to the material using a scattering depth parameter. (UE5: Create Realistic & Customizable Pool or Still Water Material w/Single Layer Water Shading Model, 2025)
 ![ ](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image.png)
 
 I then added WPO to the normal map of the water texture to be able to animate the wave movement and control the parameters for how fast/slow I wanted the waves to move.
@@ -65,7 +65,7 @@ The time of day parameter ranges from 0 to 1, smoothly transitioning the scene f
 beginning of the day 
 ![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-26.png)
 middle of the day 
-![alt text](image-28.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-28.png)
 end of the day 
 
  This setup creates a cohesive and immersive atmosphere that visually communicates the passage of time and changing environmental conditions.
@@ -87,23 +87,23 @@ My system maintains visual consistency across materials by using a Material Para
 - Demonstrate a practical use case (e.g., damage effect, dissolve, customization, hit feedback)
 
 I implemented a Dynamic Material Instance (DMI) to allow real-time adjustments to various material properties through user input. The DMI controls three key parameters: Water Tint, Opacity Level, and Glow Intensity. 
-![ ](image-17.png)
+![ ](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-17.png)
 Water tint final product 
-![alt text](image-18.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-18.png)
 opacity final product 
-![alt text](image-19.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-19.png)
 glow final product 
 
 I set up input bindings so that pressing the 1 key changes the water’s tint to pink using a Vector Parameter, while pressing 2 modifies the Scalar Parameter controlling a ball’s opacity, making it visible in the scene. Pressing 3 adjusts another Scalar Parameter to increase the ball’s glow intensity, giving it an emissive effect. 
-![ ](image-15.png)
+![ ](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-15.png)
 water tint blueprint 
-![alt text](image-16.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-16.png)
 opacity and glow blueprint 
 
 The DMI is linked directly to the corresponding materials in the level, enabling each parameter change to update instantly during gameplay.
-![alt text](image-13.png) 
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-13.png) 
 water tint material set up 
-![alt text](image-14.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-14.png)
 opacity and glow material set up 
 
  This setup demonstrates how DMIs can provide flexible, interactive control over material behaviors without the need to recompile shaders or duplicate materials, streamlining both testing and visual experimentation.
@@ -125,13 +125,13 @@ I optimized Dynamic Material Instance (DMI) creation and updates by carefully ma
 - Apply POM offset to all relevant texture samples (base color, normal, roughness)
 - Demonstrate self-occlusion and depth parallax
 
-I implemented Parallax Occlusion Mapping (POM) to create a realistic sense of depth and surface detail within my material. I began by setting up Parallax UVs that combined the base material, ambient occlusion (AO) texture, and normal map to enhance the visual complexity. I then introduced parameters for the material’s metallic and roughness values, allowing for easy adjustments to surface reflectivity. To generate the 3D illusion of depth, I created a Pixel Depth Intensity parameter and multiplied it by the Pixel Depth Offset, which shifts the texture coordinates to simulate parallax. 
-![alt text](image-8.png)
+I implemented Parallax Occlusion Mapping (POM) to create a realistic sense of depth and surface detail within my material.(UE5 l Realistic Textures with Parallax Occlusion Mapping (POM) l Material Tutorial l Unreal Engine 5, 2023) I began by setting up Parallax UVs that combined the base material, ambient occlusion (AO) texture, and normal map to enhance the visual complexity. I then introduced parameters for the material’s metallic and roughness values, allowing for easy adjustments to surface reflectivity. To generate the 3D illusion of depth, I created a Pixel Depth Intensity parameter and multiplied it by the Pixel Depth Offset, which shifts the texture coordinates to simulate parallax. 
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-8.png)
 The AO texture was integrated into the POM setup, and I added parameters for Height Ratio, Min Strength (32), and Max Strength (64) to fine-tune the perceived surface height. Additionally, I included a Boolean parameter to enable shadow rendering, setting its shadow strength to 32, and applied an underlay texture to add subtle detail beneath the main surface. 
-![alt text](image-9.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-9.png)
 This combination of parameterized controls and layered textures allowed the material to achieve a convincing, adjustable 3D effect while maintaining performance flexibility.
-![alt text](image-10.png) 
-![alt text](image-11.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-10.png) 
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-11.png)
 **Guiding Questions:**
 
 - What types of surfaces benefit most from POM?
@@ -149,9 +149,19 @@ I noticed that while Parallax Occlusion Mapping (POM) effectively creates the il
 - Implement effect using Scene Texture nodes
 - Examples: outline shader, screen distortion, custom color grading, stylized effect 
 
-I created a post-processing material to add a dynamic visual effect across the screen. I began by creating a colored tint and running it through a Lerp node that masked the red values, then blended it using a Blend Overlay with a Chroma Key Alpha. I further lerped this with a desaturation node, which initially produced a disco-like visual effect. To enhance motion and texture, I connected the setup to a Panner, which controlled the normal map texture and its desaturation, allowing me to adjust the scrolling speed in both the X and Y directions. I then combined all these effects through additional lerps and connected the result to the Emissive Color output, giving the effect a glowing, animated quality.
-![alt text](image-12.png)
+I created a post-processing material to add a dynamic visual effect across the screen.(Creating a Post Process Material in Unreal Engine, 2023) I began by creating a colored tint and running it through a Lerp node that masked the red values, then blended it using a Blend Overlay with a Chroma Key Alpha. I further lerped this with a desaturation node, which initially produced a disco-like visual effect. To enhance motion and texture, I connected the setup to a Panner, which controlled the normal map texture and its desaturation, allowing me to adjust the scrolling speed in both the X and Y directions. I then combined all these effects through additional lerps and connected the result to the Emissive Color output, giving the effect a glowing, animated quality.
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-12.png)
  Finally, I added a Post Process Volume in the level and used a material array to link the post-processing material to it. Once active in the scene, the system produced a vibrant rainbow grain effect that animated smoothly across the screen. 
 
-![ ](image-7.png)
+![ ](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-7.png)
 final product 
+
+# Biblography
+
+UE5: Create Realistic & Customizable Pool or Still Water Material w/Single Layer Water Shading Model (2025) Directed by WorldofLevelDesign. At: https://www.youtube.com/watch?v=eVT_rwCjRZU (Accessed  03/11/2025).
+
+UE5 l Realistic Textures with Parallax Occlusion Mapping (POM) l Material Tutorial l Unreal Engine 5 (2023) Directed by Coreb Games. At: https://www.youtube.com/watch?v=K18qfcTFkNw (Accessed  03/11/2025).
+ 
+ Creating a Post Process Material in Unreal Engine (2023) Directed by Cleverlike. At: https://www.youtube.com/watch?v=Sy4Pqwy62Tw (Accessed  03/11/2025).
+
+ **ChatGPT was used to form the paragraphs of this write up and helped assist me with the DMI section**
