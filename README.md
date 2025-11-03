@@ -9,18 +9,18 @@
 - Demonstrate vertex animation without skeletal meshes
 
 For this material, I started with creating the parameters for the water colour and the depth. This was so I could make the water a realistic colour and adjust the parameters of the colour being darker as depth was added to the material using a scattering depth parameter. 
-![ ](image.png)
+![ ](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image.png)
 
 I then added WPO to the normal map of the water texture to be able to animate the wave movement and control the parameters for how fast/slow I wanted the waves to move.
-![alt text](image-1.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-1.png)
 
  I then added in the foam to appear around the edges of the water when it touched the rocks surrounding it. This gives it more realism and emphasises the effects of the waves. 
- ![alt text](image-2.png)
+ ![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-2.png)
 
  *End result*
 
- ![alt text](image-3.png)
- ![alt text](image-4.png)
+ ![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-3.png)
+ ![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-4.png)
 
 **Guiding Questions:**
 - How does WPO affect performance compared to animated meshes?
@@ -31,13 +31,13 @@ World Position Offset (WPO) runs in the vertex stage every frame. This is good f
 
 I controlled wave direction and intensity by adding parameters to my material instance of the water material. I chose to add water tiling which when controlled it adjusts how stretched the material is to give a more controlled ripple effect of the normal material. Adjusting this changes how the ripples will look. I added wave speed to control how fast it moved, the faster the speed the more choppy look the waves give and I also added a parameter to adjust the intensity of them so they could appear more relaxed if needed. I added texture panning for both the x and y values so that the material would move both forward and backwards rather than just in one direction to make it look more realistic and have a better flow. 
 
-![alt text](image-5.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-5.png)
 
 - How does your water material respond to different lighting conditions?
 
 When the directional light is adjusted using the time of day cycle I have made in my MPC, the water has highlights added on the waves where the light hits it during the dark and the foam still appears as white as well. The colour of the water goes really dark but when the light is set to during the day it goes back to normal as expected. 
 
-![alt text](image-6.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-6.png)
 
 ### 2. Material Parameter Collection (MPC) System  
 **Technical Requirements:**  
@@ -48,25 +48,26 @@ When the directional light is adjusted using the time of day cycle I have made i
 
 I implemented a Material Parameter Collection to dynamically control environmental changes based on the time of day. The collection includes parameters for time of day, lamp tint, sunlight tint, and rain intensity, allowing multiple materials to react in sync.
 
-![alt text](image-20.png) 
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-20.png) 
 material parameter collection 
 
-![alt text](image-21.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-21.png)
 time of day parameter set up in the level blueprint 
 
-![alt text](image-22.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-22.png)
 lamp tint material 
-![alt text](image-23.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-23.png)
 sky tint material 
-![alt text](image-24.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-24.png)
 rock material 
 The time of day parameter ranges from 0 to 1, smoothly transitioning the scene from day to night while influencing the other parameters. As night falls, the lamps shift from a soft pink hue to a glowing blue, increasing their emissive intensity to simulate artificial lighting in the dark. Meanwhile, the sky transitions from a warm pink to a deep purple, creating a natural dusk effect. Additionally, the rock materials gain a subtle shine at night, using increased roughness and reflection to mimic dew forming on their surfaces.
-![alt text](image-25.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-25.png)
 beginning of the day 
-![alt text](image-26.png)
+![alt text](https://raw.githubusercontent.com/kdogz9/ShaderProject/refs/heads/main/image-26.png)
 middle of the day 
-![alt text](image-27.png)
+![alt text](image-28.png)
 end of the day 
+
  This setup creates a cohesive and immersive atmosphere that visually communicates the passage of time and changing environmental conditions.
 
 **Guiding Questions:**
